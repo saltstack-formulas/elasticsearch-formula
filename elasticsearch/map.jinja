@@ -1,0 +1,8 @@
+{% set elasticsearch = salt['pillar.get']('elasticsearch', {
+    'lookup': salt['grains.filter_by']({
+        'Debian': {
+            'pkg': 'elasticsearch',
+        },
+    }),
+    'config': {},
+}, merge=True) %}
