@@ -13,4 +13,7 @@ elasticsearch:
     gateway.recover_after_nodes: 3
     node.max_local_storage_nodes: 1
     action.destructive_requires_name: true
-
+  sysconfig:
+    ES_STARTUP_SLEEP_TIME: 5
+    ES_HEAP_SIZE: 8g
+    MAX_OPEN_FILES: 65535

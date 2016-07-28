@@ -1,4 +1,4 @@
-elasticsearch-repo:
+elasticsearch_repo:
   pkgrepo.managed:
     - humanname: Elasticsearch 2.
     {% if grains.get('os_family') == 'Debian' %}
