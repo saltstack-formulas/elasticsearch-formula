@@ -1,5 +1,5 @@
 Elasticsearch
-===============
+=============
 
 Formula to install and configure Elasticsearch.
 
@@ -22,27 +22,27 @@ Available states
 Installs, configures and runs the Elasticsearch service.
 
 ``elasticsearch.config``
------------
+------------------------
 
 Configures Elasticsearch.
 
 ``elasticsearch.pkg``
------------
+---------------------
 
 Installs Elasticsearch.
 
 ``elasticsearch.repo``
------------
+----------------------
 
 Adds the Elasticsearch pkg repo.
 
 
 ``elasticsearch.service``
------------
+-------------------------
 
 Manages the Elasticsearch service.
 
 ``elasticsearch.sysconfig``
------------
+---------------------------
 
 Configures defaults/sysconfig env vars for the Elasticsearch service.
