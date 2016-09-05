@@ -25,6 +25,7 @@ Installs, configures and runs the Elasticsearch service.
 ------------------------
 
 Configures Elasticsearch.
+Custom options can be specified via `custom_options` and are rendered as yaml in the elasticsearch config.
 
 ``elasticsearch.pkg``
 ---------------------
