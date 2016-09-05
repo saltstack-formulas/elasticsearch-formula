@@ -47,3 +47,8 @@ Manages the Elasticsearch service.
 ---------------------------
 
 Configures defaults/sysconfig env vars for the Elasticsearch service.
+
+``elasticsearch.plugins``
+-------------------------
+
+Allows configuration of elasticsearch plugins.
