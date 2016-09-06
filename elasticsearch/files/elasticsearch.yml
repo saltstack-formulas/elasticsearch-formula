@@ -146,3 +146,10 @@ action.destructive_requires_name: {{ elasticsearch.config['action.destructive_re
 {%- else %}
 # action.destructive_requires_name: true
 {%- endif %}
+
+{%- if elasticsearch.config['custom_options'] is defined %}
+{% set custom_options = elasticsearch.config['custom_options'] %}
+{{ custom_options|yaml(False) }}
+{%- else %}
+# no custom options set
+{%- endif %}

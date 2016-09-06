@@ -4,3 +4,4 @@ include:
   - elasticsearch.config
   - elasticsearch.sysconfig
   - elasticsearch.service
+  - elasticsearch.plugins
