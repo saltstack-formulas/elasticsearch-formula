@@ -25,8 +25,9 @@ elasticsearch:
     kopf: lmenezes/elasticsearch-kopf
     license: license
     shield: shield
- shield:
-    logger:
+  shield:
+    logging:
+      logger:
         shield.audit.logfile: INFO, access_log
 
       additivity:
@@ -41,6 +42,7 @@ elasticsearch:
           layout:
             type: pattern
             conversionPattern: "[%d{ISO8601}] %m%n"
+
     role_mapping:
       # Role mapping configuration file which has elasticsearch roles as keys
       # that map to one or more user or group distinguished names
@@ -56,13 +58,12 @@ elasticsearch:
       #  - "cn=users,dc=example,dc=com"
       #  - "cn=admins,dc=example,dc=com"
       #  - "cn=John Doe,cn=other users,dc=example,dc=com"
-
     roles:
       # All cluster rights
       # All operations on all indices
-        admin:
-          cluster:
-            - all
+      admin:
+        cluster:
+          - all
         indices:
           - names: '*'
             privileges:
@@ -113,15 +114,16 @@ elasticsearch:
               - read
               - create_index
 
-          # Marvel user role. Assign to marvel users.
-          marvel_user:
-            indices:
-              - names: '.marvel-es-*'
-                privileges: [ "read" ]
-              - names: '.kibana'
-                privileges:
-                  - view_index_metadata
-                  - read
+      # Marvel user role. Assign to marvel users.
+      marvel_user:
+        indices:
+          - names: '.marvel-es-*'
+            privileges: [ "read" ]
+          - names: '.kibana'
+            privileges:
+              - view_index_metadata
+              - read
+
       # Marvel remote agent role. Assign to the agent user on the remote marvel cluster
       # to which the marvel agent will export all its data
       remote_marvel_agent:
