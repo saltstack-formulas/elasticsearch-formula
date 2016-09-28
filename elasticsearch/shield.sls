@@ -19,7 +19,7 @@ elasticsearch_shield_role_mapping_cfg:
     - require:
       - sls: elasticsearch.pkg
 
-elasticsearch_shield_logging_cfg:
+elasticsearch_shield_roles_cfg:
   file.managed:
     - name: /etc/elasticsearch/shield/roles.yml
     - source: salt://elasticsearch/files/shield/roles.yml
