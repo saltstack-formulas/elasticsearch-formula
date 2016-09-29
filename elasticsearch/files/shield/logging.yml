@@ -1,0 +1,7 @@
+{%- from "elasticsearch/map.jinja" import elasticsearch with context -%}
+{%- if elasticsearch.shield['logging'] is defined %}
+{% set shield_logging = elasticsearch.shield['logging'] %}
+{{ shield_logging|yaml(False) }}
+{%- else %}
+# no shield logging options set
+{%- endif %}

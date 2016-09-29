@@ -1,0 +1,7 @@
+{%- from "elasticsearch/map.jinja" import elasticsearch with context -%}
+{%- if elasticsearch.shield['role_mapping'] is defined %}
+{% set shield_role_mapping = elasticsearch.shield['role_mapping'] %}
+{{ shield_role_mapping|yaml(False) }}
+{%- else %}
+# no shield role mapping options set
+{%- endif %}

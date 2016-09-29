@@ -23,3 +23,111 @@ elasticsearch:
     MAX_OPEN_FILES: 65535
   plugins:
     kopf: lmenezes/elasticsearch-kopf
+    license: license
+    shield: shield
+  shield:
+    logging:
+      logger:
+        shield.audit.logfile: INFO, access_log
+
+      additivity:
+        shield.audit.logfile: false
+
+      appender:
+
+        access_log:
+          type: dailyRollingFile
+          file: ${path.logs}/${cluster.name}-access.log
+          datePattern: "'.'yyyy-MM-dd"
+          layout:
+            type: pattern
+            conversionPattern: "[%d{ISO8601}] %m%n"
+
+    role_mapping:
+      # Role mapping configuration file which has elasticsearch roles as keys
+      # that map to one or more user or group distinguished names
+
+      #roleA:   this is an elasticsearch role
+      #  - groupA-DN  this is a group distinguished name
+      #  - groupB-DN
+      #  - user1-DN   this is the full user distinguished name
+
+      power_user:
+        - "cn=admins,dc=example,dc=com"
+      #user:
+      #  - "cn=users,dc=example,dc=com"
+      #  - "cn=admins,dc=example,dc=com"
+      #  - "cn=John Doe,cn=other users,dc=example,dc=com"
+    roles:
+      # All cluster rights
+      # All operations on all indices
+      admin:
+        cluster:
+          - all
+        indices:
+          - names: '*'
+            privileges:
+              - all
+
+      # monitoring cluster privileges
+      # All operations on all indices
+      power_user:
+        cluster:
+          - monitor
+        indices:
+          - names: '*'
+            privileges:
+              - all
+
+      # Read-only operations on indices
+      user:
+        indices:
+          - names: '*'
+            privileges:
+              - read
+
+      # Defines the required permissions for transport clients
+      transport_client:
+        cluster:
+            - transport_client
+
+      # The required permissions for the kibana 4 server
+      kibana4_server:
+        cluster:
+            - monitor
+        indices:
+          - names: '.kibana*'
+            privileges:
+              - all
+          - names: '.reporting-*'
+            privileges:
+              - all
+
+      # The required role for logstash users
+      logstash:
+        cluster:
+          - manage_index_templates
+        indices:
+          - names: 'logstash-*'
+            privileges:
+              - write
+              - read
+              - create_index
+
+      # Marvel user role. Assign to marvel users.
+      marvel_user:
+        indices:
+          - names: '.marvel-es-*'
+            privileges: [ "read" ]
+          - names: '.kibana'
+            privileges:
+              - view_index_metadata
+              - read
+
+      # Marvel remote agent role. Assign to the agent user on the remote marvel cluster
+      # to which the marvel agent will export all its data
+      remote_marvel_agent:
+        cluster: [ "manage_index_templates" ]
+        indices:
+          - names: '.marvel-es-*'
+            privileges: [ "all" ]
