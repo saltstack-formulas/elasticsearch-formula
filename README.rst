@@ -59,3 +59,5 @@ Allows configuration of elasticsearch plugins.
 Configures `logging.yml`, `role_mapping.yml` and `roles.yml` for Elastic Shield. Pillar.example contains default Shield config.
 
 Use `elasticsearch:config:custom_options` in pillar to set the Shield config, that goes into elasticsearch.yml.
+
+Use the plugins state to install the license and Shield plugins.
