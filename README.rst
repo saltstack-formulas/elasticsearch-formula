@@ -52,3 +52,10 @@ Configures defaults/sysconfig env vars for the Elasticsearch service.
 -------------------------
 
 Allows configuration of elasticsearch plugins.
+
+``elasticsearch.shield``
+-------------------------
+
+Configures `logging.yml`, `role_mapping.yml` and `roles.yml` for Elastic Shield. Pillar.example contains default Shield config.
+
+Use `elasticsearch:config:custom_options` in pillar to set the Shield config, that goes into elasticsearch.yml.

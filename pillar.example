@@ -52,8 +52,8 @@ elasticsearch:
       #  - groupB-DN
       #  - user1-DN   this is the full user distinguished name
 
-      #power_user:
-      #  - "cn=admins,dc=example,dc=com"
+      power_user:
+        - "cn=admins,dc=example,dc=com"
       #user:
       #  - "cn=users,dc=example,dc=com"
       #  - "cn=admins,dc=example,dc=com"
