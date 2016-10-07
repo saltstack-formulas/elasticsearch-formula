@@ -9,8 +9,8 @@ include:
 
 {% set sysconfig_data = salt['pillar.get']('elasticsearch:sysconfig', {}) %}
 
-{% set heap_percentage = salt['pillar.fetch']('elasticsearch:heap_size_percentage', 0) %}
-{% set heap_size = (salt['grains.get']('mem_total') * heap_percentage)|round(0)|int %}
+{% set heap_ratio = salt['pillar.fetch']('elasticsearch:heap_size_ratio', 0) %}
+{% set heap_size = (salt['grains.get']('mem_total') * heap_ratio)|round(0)|int %}
 
 {% if heap_size %}
 {% do sysconfig_data.update({'ES_HEAP_SIZE': "{0}m".format(heap_size)}) %}
