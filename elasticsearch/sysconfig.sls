@@ -7,7 +7,15 @@ include:
 {% set sysconfig_file = '/etc/sysconfig/elasticsearch' %}
 {% endif %}
 
-{% set sysconfig_data = salt['pillar.get']('elasticsearch:sysconfig') %}
+{% set sysconfig_data = salt['pillar.get']('elasticsearch:sysconfig', {}) %}
+
+{% set heap_ratio = salt['pillar.fetch']('elasticsearch:heap_size_ratio', 0) %}
+{% set heap_size = (salt['grains.get']('mem_total') * heap_ratio)|round(0)|int %}
+
+{% if heap_size %}
+{% do sysconfig_data.update({'ES_HEAP_SIZE': "{0}m".format(heap_size)}) %}
+{% endif %}
+
 {% if sysconfig_data %}
 {{ sysconfig_file }}:
   file.managed:
@@ -19,5 +27,5 @@ include:
     - watch_in:
       - service: elasticsearch_service
     - context:
-        sysconfig: {{ salt['pillar.get']('elasticsearch:sysconfig') }}
+        sysconfig: {{ sysconfig_data }}
 {% endif %}

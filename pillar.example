@@ -17,6 +17,8 @@ elasticsearch:
       indices:
         memory:
           index_buffer_size: 50%
+  # This over-rides the ES_HEAP_SIZE set below to be 45% of memory
+  heap_size_ratio: 0.45
   sysconfig:
     ES_STARTUP_SLEEP_TIME: 5
     ES_HEAP_SIZE: 8g
