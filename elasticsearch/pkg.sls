@@ -5,6 +5,6 @@ include:
 
 elasticsearch_pkg:
   pkg.installed:
-    - name: {{ elasticsearch.lookup.pkg }}
+    - name: {{ elasticsearch.pkg }}
     - require:
       - sls: elasticsearch.repo

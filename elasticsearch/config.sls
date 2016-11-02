@@ -2,10 +2,10 @@ include:
   - elasticsearch.pkg
 
 elasticsearch_cfg:
-  file.managed:
+  file.serialize:
     - name: /etc/elasticsearch/elasticsearch.yml
-    - source: salt://elasticsearch/files/elasticsearch.yml
-    - template: jinja
+    - dataset_pillar: elasticsearch:config
+    - formatter: yaml
     - user: root
     - require:
       - sls: elasticsearch.pkg

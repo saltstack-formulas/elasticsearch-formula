@@ -1,8 +1,7 @@
 include:
   - elasticsearch.pkg
 
-{%- from "elasticsearch/map.jinja" import elasticsearch with context -%}
-{%- if elasticsearch['plugins'] is defined %}
+{%- if salt['pillar.get']('elasticsearch:plugins', {}) %}
 
 {% for name, repo in elasticsearch.plugins.iteritems() %}
 elasticsearch-{{ name }}:
