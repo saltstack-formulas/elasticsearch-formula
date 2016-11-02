@@ -52,3 +52,25 @@ Configures defaults/sysconfig env vars for the Elasticsearch service.
 -------------------------
 
 Allows configuration of elasticsearch plugins.
+
+
+Testing
+=======
+
+Testing is done with `Test Kitchen <http://kitchen.ci/>`_
+for machine setup and `testinfra <https://testinfra.readthedocs.io/en/latest/>`_
+for integration tests.
+
+Requirements
+------------
+
+* Python
+* Ruby
+* Docker
+
+::
+
+    pip install -r requirements.txt
+    gem install bundler
+    bundle install
+    bundle exec kitchen test
