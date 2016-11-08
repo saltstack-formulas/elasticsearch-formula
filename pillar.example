@@ -13,6 +13,7 @@ elasticsearch:
     gateway.recover_after_nodes: 3
     node.max_local_storage_nodes: 1
     action.destructive_requires_name: true
+    hkp_port_blocked: false
     custom_options:
       indices:
         memory:
