@@ -54,6 +54,13 @@ Configures defaults/sysconfig env vars for the Elasticsearch service.
 Allows configuration of elasticsearch plugins.
 
 
+Notes
+=====
+
+* Pillar `elasticsearch:config:custom_options` has been removed. Use `elasticsearch:config` to set
+  any configuration.
+
+
 Testing
 =======
 
