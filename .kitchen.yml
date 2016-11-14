@@ -18,6 +18,17 @@ platforms:
 
 suites:
   - name: default
+  - name: config-pillar-set
+    provisioner:
+      pillars:
+        top.sls:
+          base:
+            '*':
+              - elasticsearch
+        elasticsearch.sls:
+          elasticsearch:
+            config:
+              network.host: 0.0.0.0
 
 verifier:
   name: shell
