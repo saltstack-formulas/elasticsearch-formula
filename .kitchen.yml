@@ -29,6 +29,23 @@ suites:
           elasticsearch:
             config:
               network.host: 0.0.0.0
+  - name: version-5.0
+    driver_config:
+      provision_command:
+        - apt-get update  # base image is out of date
+        - apt-get install -y software-properties-common  # required for add-apt-repository
+        - add-apt-repository -y ppa:openjdk-r/ppa
+        - apt-get update
+        - apt-get install -y openjdk-8-jre-headless
+    provisioner:
+      pillars:
+        top.sls:
+          base:
+            '*':
+              - elasticsearch
+        elasticsearch.sls:
+          elasticsearch:
+            major_version: 5
 
 verifier:
   name: shell
