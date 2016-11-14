@@ -1,6 +1,7 @@
 include:
   - elasticsearch.pkg
 
+{%- if salt['pillar.get']('elasticsearch:config') %}
 elasticsearch_cfg:
   file.serialize:
     - name: /etc/elasticsearch/elasticsearch.yml
@@ -9,6 +10,7 @@ elasticsearch_cfg:
     - user: root
     - require:
       - sls: elasticsearch.pkg
+{%- endif %}
 
 {% set data_dir = salt['pillar.get']('elasticsearch:config:path.data') %}
 {% set log_dir = salt['pillar.get']('elasticsearch:config:path.logs') %}
