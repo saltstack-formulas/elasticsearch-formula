@@ -1,9 +1,7 @@
 include:
   - elasticsearch.pkg
 
-{%- if salt['pillar.get']('elasticsearch:plugins', {}) %}
-
-{% for name, repo in elasticsearch.plugins.iteritems() %}
+{% for name, repo in salt['pillar.get']('elasticsearch:plugins', {}).items() %}
 elasticsearch-{{ name }}:
   cmd.run:
     - name: /usr/share/elasticsearch/bin/plugin install {{ repo }}
@@ -11,7 +9,3 @@ elasticsearch-{{ name }}:
       - sls: elasticsearch.pkg
     - unless: test -x /usr/share/elasticsearch/plugins/{{ name }}
 {% endfor %}
-
-{%- else %}
-# no plugins
-{%- endif %}
