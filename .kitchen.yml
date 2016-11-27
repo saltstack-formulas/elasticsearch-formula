@@ -43,6 +43,8 @@ suites:
             plugins:
               lang-python: lang-python
   - name: version-5.0-with-pillar-set
+    excludes:
+      - ubuntu-14.04
     provisioner:
       pillars:
         top.sls:
