@@ -41,7 +41,7 @@ suites:
             config:
               network.host: 0.0.0.0
             plugins:
-              kopf: lmenezes/elasticsearch-kopf
+              lang-python: lang-python
   - name: version-5.0-with-pillar-set
     provisioner:
       pillars:
@@ -55,7 +55,7 @@ suites:
             config:
               network.host: 0.0.0.0
             plugins:
-              kopf: lmenezes/elasticsearch-kopf
+              lang-python: lang-python
   - name: version-5.0
     excludes:
       - ubuntu-14.04
