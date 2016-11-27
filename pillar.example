@@ -19,4 +19,5 @@ elasticsearch:
     ES_HEAP_SIZE: 8g
     MAX_OPEN_FILES: 65535
   plugins:
+    lang-python: lang-python
     kopf: lmenezes/elasticsearch-kopf
