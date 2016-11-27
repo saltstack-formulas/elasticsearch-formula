@@ -2,7 +2,13 @@
 driver:
   name: docker
   use_sudo: false
-  provision_command: apt-get install -y openjdk-7-jre-headless
+  privileged: true
+  provision_command:
+    - apt-get update                                 # base image is out of date
+    - apt-get install -y software-properties-common  # required for add-apt-repository
+    - add-apt-repository -y ppa:openjdk-r/ppa
+    - apt-get update
+    - apt-get install -y openjdk-8-jre-headless
 
 provisioner:
   name: salt_solo
@@ -15,6 +21,9 @@ provisioner:
 
 platforms:
   - name: ubuntu-14.04
+  - name: ubuntu-16.04
+    driver_config:
+      run_command: /sbin/init
 
 suites:
   - name: default
@@ -30,13 +39,8 @@ suites:
             config:
               network.host: 0.0.0.0
   - name: version-5.0
-    driver_config:
-      provision_command:
-        - apt-get update  # base image is out of date
-        - apt-get install -y software-properties-common  # required for add-apt-repository
-        - add-apt-repository -y ppa:openjdk-r/ppa
-        - apt-get update
-        - apt-get install -y openjdk-8-jre-headless
+    excludes:
+      - ubuntu-14.04
     provisioner:
       pillars:
         top.sls:
