@@ -2,6 +2,7 @@ include:
   - elasticsearch.pkg
 
 {%- set plugins_pillar = salt['pillar.get']('elasticsearch:plugins', {}) %}
+
 {% for name, repo in plugins_pillar.items() %}
 elasticsearch-{{ name }}:
   cmd.run:
