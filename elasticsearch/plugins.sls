@@ -1,7 +1,8 @@
 include:
   - elasticsearch.pkg
 
-{% for name, repo in salt['pillar.get']('elasticsearch:plugins', {}).items() %}
+{%- set plugins_pillar = salt['pillar.get']('elasticsearch:plugins', {}) %}
+{% for name, repo in plugins_pillar.items() %}
 elasticsearch-{{ name }}:
   cmd.run:
     - name: /usr/share/elasticsearch/bin/plugin install {{ repo }}
