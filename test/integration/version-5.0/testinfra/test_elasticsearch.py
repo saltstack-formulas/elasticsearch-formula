@@ -1,6 +1,9 @@
 import testinfra
 
 
+def test_python_plugin_is_installed(File):
+    assert File('/usr/share/elasticsearch/plugins/lang-python').is_directory
+
 def test_package_in_installed(Package):
     elasticsearch = Package('elasticsearch')
     assert elasticsearch.is_installed

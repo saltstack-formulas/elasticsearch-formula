@@ -4,11 +4,13 @@ driver:
   use_sudo: false
   privileged: true
   provision_command:
+    - locale-gen en_US.UTF-8
     - apt-get update                                 # base image is out of date
     - apt-get install -y software-properties-common  # required for add-apt-repository
     - add-apt-repository -y ppa:openjdk-r/ppa
     - apt-get update
     - apt-get install -y openjdk-8-jre-headless
+    - update-ca-certificates -f
 
 provisioner:
   name: salt_solo
@@ -27,7 +29,7 @@ platforms:
 
 suites:
   - name: default
-  - name: config-pillar-set
+  - name: with-pillar-set
     provisioner:
       pillars:
         top.sls:
@@ -38,6 +40,8 @@ suites:
           elasticsearch:
             config:
               network.host: 0.0.0.0
+            plugins:
+              lang-python: lang-python
   - name: version-5.0
     excludes:
       - ubuntu-14.04
@@ -50,6 +54,8 @@ suites:
         elasticsearch.sls:
           elasticsearch:
             major_version: 5
+            plugins:
+              lang-python: lang-python
 
 verifier:
   name: shell
