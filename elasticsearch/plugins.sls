@@ -1,9 +1,9 @@
 include:
   - elasticsearch.pkg
 
-{%- set plugins_pillar = salt['pillar.get']('elasticsearch:plugins', {}) %}
 
 {%- set major_version = salt['pillar.get']('elasticsearch:major_version', 2) %}
+{%- set plugins_pillar = salt['pillar.get']('elasticsearch:plugins', {}) %}
 
 {% if major_version == 5 %}
   {%- set plugin_bin = 'elasticsearch-plugin' %}
