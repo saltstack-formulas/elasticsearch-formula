@@ -42,22 +42,6 @@ suites:
               network.host: 0.0.0.0
             plugins:
               lang-python: lang-python
-  - name: version-5.0-with-pillar-set
-    excludes:
-      - ubuntu-14.04
-    provisioner:
-      pillars:
-        top.sls:
-          base:
-            '*':
-              - elasticsearch
-        elasticsearch.sls:
-          elasticsearch:
-            major_version: 5
-            config:
-              network.host: 0.0.0.0
-            plugins:
-              lang-python: lang-python
   - name: version-5.0
     excludes:
       - ubuntu-14.04
@@ -70,6 +54,8 @@ suites:
         elasticsearch.sls:
           elasticsearch:
             major_version: 5
+            plugins:
+              lang-python: lang-python
 
 verifier:
   name: shell
