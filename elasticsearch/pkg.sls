@@ -1,3 +1,5 @@
+{%- set major_version = salt['pillar.get']('elasticsearch:major_version', 2) %}
+
 include:
   - elasticsearch.repo
 
@@ -5,6 +7,7 @@ include:
 
 elasticsearch_pkg:
   pkg.installed:
-    - name: {{ elasticsearch.lookup.pkg }}
+    - name: {{ elasticsearch.pkg }}
+    - version: {{ major_version }}.*
     - require:
       - sls: elasticsearch.repo

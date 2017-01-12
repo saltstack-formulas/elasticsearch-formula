@@ -6,7 +6,9 @@ elasticsearch_service:
   service.running:
     - name: elasticsearch
     - enable: True
+{%- if salt['pillar.get']('elasticsearch:config') %}
     - watch:
       - file: elasticsearch_cfg
+{%- endif %}
     - require:
-      - sls: elasticsearch.pkg
+      - pkg: elasticsearch
