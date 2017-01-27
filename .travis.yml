@@ -9,4 +9,4 @@ services:
 before_install:
   - pip install -r requirements.txt
 
-script: source test/run.sh
+script: ./test/run.sh
