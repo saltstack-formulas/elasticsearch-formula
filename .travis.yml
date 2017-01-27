@@ -9,4 +9,6 @@ services:
 before_install:
   - pip install -r requirements.txt
 
-script: ./test/run.sh
+script:
+  - env
+  - ./test/run.sh
