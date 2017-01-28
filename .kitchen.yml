@@ -42,8 +42,6 @@ suites:
           elasticsearch:
             config:
               network.host: 0.0.0.0
-            sysconfig:
-              JAVA_HOME: /usr/lib/java
             plugins:
               lang-python: lang-python
   - name: version-5.0
@@ -58,8 +56,6 @@ suites:
         elasticsearch.sls:
           elasticsearch:
             major_version: 5
-            sysconfig:
-              JAVA_HOME: /usr/lib/java
             plugins:
               lang-python: lang-python
 
