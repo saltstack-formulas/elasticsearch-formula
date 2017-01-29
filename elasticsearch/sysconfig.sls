@@ -9,9 +9,8 @@ include:
 
 {% set sysconfig_data = salt['pillar.get']('elasticsearch:sysconfig') %}
 {% if sysconfig_data %}
-manage Elasticsearch environment file:
+{{ sysconfig_file }}:
   file.managed:
-    - name: {{ sysconfig_file }}
     - source: salt://elasticsearch/files/sysconfig
     - owner: elasticsearch
     - group: elasticsearch
