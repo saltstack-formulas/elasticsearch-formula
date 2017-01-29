@@ -21,3 +21,13 @@ include:
     - context:
         sysconfig: {{ salt['pillar.get']('elasticsearch:sysconfig') }}
 {% endif %}
+
+{%- set java_home = salt['pillar.get']('elasticsearch:java_home', '/usr/lib/java') %}
+manage Elasticsearch JAVA_HOME in environment file:
+  file.replace:
+    - name: {{ sysconfig_file }}
+    - pattern: ^[\s#]*JAVA_HOME=.*$
+    - repl: JAVA_HOME={{ java_home }}
+    - prepend_if_not_found: true
+    - watch_in:
+      - service: elasticsearch
