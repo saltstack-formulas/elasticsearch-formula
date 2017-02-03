@@ -6,7 +6,7 @@
   {%- set repo_url = 'http://packages.elastic.co/elasticsearch/2.x' %}
 {%- endif %}
 
-{%- if major_version == 5 %}
+{%- if major_version == 5 and grains['os_family'] == 'Debian' %}
 apt-transport-https:
   pkg.installed
 {%- endif %}
@@ -28,7 +28,7 @@ elasticsearch_repo:
 {%- elif grains['os_family'] == 'RedHat' %}
     - name: elasticsearch
   {%- if major_version == 5 %}
-    - baseurl: {{ repo_url }}/centos
+    - baseurl: {{ repo_url }}/yum
   {%- else %}
     - baseurl: {{ repo_url }}/centos
   {%- endif %}
