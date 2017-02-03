@@ -10,16 +10,13 @@ include:
 {% set sysconfig_data = salt['pillar.get']('elasticsearch:sysconfig') %}
 {% if sysconfig_data %}
 {{ sysconfig_file }}:
-  file.managed:
-    - source: salt://elasticsearch/files/sysconfig
-    - owner: elasticsearch
-    - group: elasticsearch
-    - mode: 0600
-    - template: jinja
+  ini.options_present:
     - watch_in:
       - service: elasticsearch_service
-    - context:
-        sysconfig: {{ salt['pillar.get']('elasticsearch:sysconfig') }}
+    - sections:
+          {%- for k,v in salt['pillar.get']('elasticsearch:sysconfig').items() %}
+          {{ k }}: '{{ v }}'
+          {%- endfor %}
 {% endif %}
 
 {%- set java_home = salt['pillar.get']('elasticsearch:java_home', '/usr/lib/java') %}
