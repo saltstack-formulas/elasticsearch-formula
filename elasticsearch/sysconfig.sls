@@ -17,4 +17,4 @@ include:
     - watch_in:
       - service: elasticsearch_service
     - context:
-        sysconfig: {{ salt['pillar.get']('elasticsearch:sysconfig') }}
+        sysconfig: {{ salt['pillar.get']('elasticsearch:sysconfig', '{}') }}
