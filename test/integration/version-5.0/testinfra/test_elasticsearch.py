@@ -13,3 +13,6 @@ def test_service_is_running_and_enabled(Service):
     elasticsearch = Service('elasticsearch')
     assert elasticsearch.is_running
     assert elasticsearch.is_enabled
+
+def test_jvm_opts(File):
+    assert File('/etc/elasticsearch/jvm.options').contains('# Test String')
