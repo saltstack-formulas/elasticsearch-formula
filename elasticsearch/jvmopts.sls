@@ -3,7 +3,7 @@ include:
 
 {%- set major_version = salt['pillar.get']('elasticsearch:major_version', 2) %}
 
-{%- if major_version >= 5 %}
+{%- if major_version == 5 %}
 {%- set jvm_opts = salt['pillar.get']('elasticsearch:jvm_opts') %}
 {%- if jvm_opts %}
 /etc/elasticsearch/jvm.options:
