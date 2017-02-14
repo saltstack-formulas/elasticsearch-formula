@@ -58,6 +58,8 @@ suites:
             major_version: 5
             plugins:
               lang-python: lang-python
+            jvm_opts:
+              - '# Test String'
 
 verifier:
   name: shell
