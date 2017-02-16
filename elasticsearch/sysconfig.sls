@@ -7,8 +7,6 @@ include:
 {% set sysconfig_file = '/etc/sysconfig/elasticsearch' %}
 {% endif %}
 
-{% set sysconfig_data = salt['pillar.get']('elasticsearch:sysconfig') %}
-{% if sysconfig_data %}
 {{ sysconfig_file }}:
   file.managed:
     - source: salt://elasticsearch/files/sysconfig
@@ -19,5 +17,4 @@ include:
     - watch_in:
       - service: elasticsearch_service
     - context:
-        sysconfig: {{ salt['pillar.get']('elasticsearch:sysconfig') }}
-{% endif %}
+        sysconfig: {{ salt['pillar.get']('elasticsearch:sysconfig', '{}') }}
