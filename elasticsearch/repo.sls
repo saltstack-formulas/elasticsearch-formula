@@ -1,3 +1,4 @@
+{%-if salt['pillar.get']('elasticsearch:use_repo') == 'True', True %}
 {%- set major_version = salt['pillar.get']('elasticsearch:major_version', 2) %}
 
 {%- if major_version == 5 %}
@@ -35,4 +36,5 @@ elasticsearch_repo:
     - enabled: 1
     - gpgcheck: 1
     - gpgkey: http://artifacts.elastic.co/GPG-KEY-elasticsearch
+{%- endif %}
 {%- endif %}
