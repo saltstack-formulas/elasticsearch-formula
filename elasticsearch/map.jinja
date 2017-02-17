@@ -1,13 +1,9 @@
-{% set elasticsearch = salt['pillar.get']('elasticsearch', {
-    'lookup': salt['grains.filter_by']({
-        'Debian': {
-            'pkg': 'elasticsearch',
-            'use_upstream_repo': True,
-        },
-        'RedHat': {
-            'pkg': 'elasticsearch',
-            'use_upstream_repo': True,
-        },
-    }),
-    'config': {},
-}, merge=True) %}
+{% set elasticsearch = salt['grains.filter_by']({
+    'default': {
+        'pkg': 'elasticsearch',
+        'use_upstream_repo': True,
+    },
+},
+merge=salt['pillar.get']('elasticsearch:lookup', {}),
+default='default')
+%}
