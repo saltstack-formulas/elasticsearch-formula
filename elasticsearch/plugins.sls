@@ -1,11 +1,10 @@
 include:
   - elasticsearch.pkg
 
-
-{%- set major_version = salt['pillar.get']('elasticsearch:major_version', 2) %}
+{% from "elasticsearch/settings.sls" import elasticsearch with context %}
 {%- set plugins_pillar = salt['pillar.get']('elasticsearch:plugins', {}) %}
 
-{% if major_version == 5 %}
+{% if elasticsearch.major_version == 5 %}
   {%- set plugin_bin = 'elasticsearch-plugin' %}
 {% else %}
   {%- set plugin_bin = 'plugin' %}
