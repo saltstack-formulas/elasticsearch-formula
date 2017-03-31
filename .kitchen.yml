@@ -55,7 +55,7 @@ suites:
               - elasticsearch
         elasticsearch.sls:
           elasticsearch:
-            major_version: 5
+            version: 5.*
             plugins:
               lang-python: lang-python
             jvm_opts:

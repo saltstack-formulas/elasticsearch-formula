@@ -1,5 +1,5 @@
 elasticsearch:
-  major_version: 2
+  version: 2.4.2-1
   config:
     cluster.name: my-application
     node.name: node2
