@@ -25,6 +25,7 @@
 {% endif %}
 
 {% set elasticsearch = {} %}
-{% do elasticsearch.update( { 'version': version,
+{% do elasticsearch.update( { 
+                              'version': version,
                               'major_version': major_version,
-                          } ) %}
+                            } ) %}
