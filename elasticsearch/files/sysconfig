@@ -1,6 +1,6 @@
 {%- if 'JAVA_HOME' not in sysconfig.keys() %}
 JAVA_HOME=/usr/lib/java
-{%- endif %}
+{% endif %}
 {%- for key, value in sysconfig.iteritems() -%}
 {{ key }}={{ value }}
 {% endfor %}
