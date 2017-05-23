@@ -9,7 +9,7 @@ include:
 /etc/elasticsearch/jvm.options:
   file.managed:
     - mode: 0770
-    - owner: elasticsearch
+    - user: elasticsearch
     - group: elasticsearch
     - contents: {{ jvm_opts }}
     - watch_in:

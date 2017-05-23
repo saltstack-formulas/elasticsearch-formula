@@ -10,7 +10,7 @@ include:
 {{ sysconfig_file }}:
   file.managed:
     - source: salt://elasticsearch/files/sysconfig
-    - owner: elasticsearch
+    - user: elasticsearch
     - group: elasticsearch
     - mode: 0600
     - template: jinja
