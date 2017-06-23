@@ -60,6 +60,9 @@ suites:
               lang-python: lang-python
             jvm_opts:
               - '# Test String'
+            systemd:
+              Service:
+                '# Test': String
 
 verifier:
   name: shell
