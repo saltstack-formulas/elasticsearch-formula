@@ -1,6 +1,7 @@
 {% set elasticsearch_map = salt['grains.filter_by']({
     'default': {
         'pkg': 'elasticsearch',
+        'use_repo': True,
     },
 },
 merge=salt['pillar.get']('elasticsearch:lookup', {}),

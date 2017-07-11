@@ -1,5 +1,6 @@
 elasticsearch:
   version: 2.4.2-1
+  use_repo: True
   config:
     cluster.name: my-application
     node.name: node2
