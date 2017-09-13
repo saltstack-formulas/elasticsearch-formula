@@ -1,5 +1,7 @@
 elasticsearch:
   version: 2.4.2-1
+  enabled: True
+  running: True
   config:
     cluster.name: my-application
     node.name: node2
