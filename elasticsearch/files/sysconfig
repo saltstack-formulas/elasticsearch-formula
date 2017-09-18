@@ -2,5 +2,5 @@
 JAVA_HOME=/usr/lib/java
 {% endif %}
 {%- for key, value in sysconfig.iteritems() -%}
-{{ key }}={{ value }}
+{{ key }}="{{ value }}"
 {% endfor %}
