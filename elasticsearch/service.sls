@@ -3,9 +3,10 @@ include:
   - elasticsearch.config
 
 elasticsearch_service:
-  service.running:
+  service:
+    - {{ "running" if salt['pillar.get']('elasticsearch:running', True) else "dead" }}
     - name: elasticsearch
-    - enable: True
+    - enable: {{ salt['pillar.get']('elasticsearch:enabled', True) }}
 {%- if salt['pillar.get']('elasticsearch:config') %}
     - watch:
       - file: elasticsearch_cfg
