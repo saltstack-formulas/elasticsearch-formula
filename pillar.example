@@ -1,6 +1,10 @@
 elasticsearch:
+<<<<<<< HEAD
   use_repo: True
   major_version: 2
+=======
+  version: 2.4.2-1
+>>>>>>> 3c395002a409edeeca1b474f2e3651a2b514cf97
   config:
     cluster.name: my-application
     node.name: node2

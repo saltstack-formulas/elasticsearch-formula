@@ -23,5 +23,7 @@ elasticsearch_cfg:
     - group: elasticsearch
     - mode: 0700
     - makedirs: True
+    - require_in:
+      - service: elasticsearch
 {% endif %}
 {% endfor %}

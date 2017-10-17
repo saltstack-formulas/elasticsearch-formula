@@ -1,21 +1,21 @@
-{%- set major_version = salt['pillar.get']('elasticsearch:major_version', 2) %}
+{% from "elasticsearch/settings.sls" import elasticsearch with context %}
 
-{%- if major_version == 5 %}
+{%- if elasticsearch.major_version == 5 %}
   {%- set repo_url = 'https://artifacts.elastic.co/packages/5.x' %}
 {%- else %}
   {%- set repo_url = 'http://packages.elastic.co/elasticsearch/2.x' %}
 {%- endif %}
 
-{%- if major_version == 5 and grains['os_family'] == 'Debian' %}
+{%- if elasticsearch.major_version == 5 and grains['os_family'] == 'Debian' %}
 apt-transport-https:
   pkg.installed
 {%- endif %}
 
 elasticsearch_repo:
   pkgrepo.managed:
-    - humanname: Elasticsearch {{ major_version }}
+    - humanname: Elasticsearch {{ elasticsearch.major_version }}
 {%- if grains.get('os_family') == 'Debian' %}
-  {%- if major_version == 5 %}
+  {%- if elasticsearch.major_version == 5 %}
     - name: deb {{ repo_url }}/apt stable main
   {%- else %}
     - name: deb {{ repo_url }}/debian stable main
@@ -27,7 +27,7 @@ elasticsearch_repo:
     - clean_file: true
 {%- elif grains['os_family'] == 'RedHat' %}
     - name: elasticsearch
-  {%- if major_version == 5 %}
+  {%- if elasticsearch.major_version == 5 %}
     - baseurl: {{ repo_url }}/yum
   {%- else %}
     - baseurl: {{ repo_url }}/centos
