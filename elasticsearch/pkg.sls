@@ -7,6 +7,7 @@ elasticsearch_pkg:
     {% if elasticsearch.version %}
     - version: {{ elasticsearch.version }}
     {% endif %}
+    {% if salt['pillar.get']('elasticsearch:use_repo', True) == True %}
     - require:
       - sls: elasticsearch.repo
     {% endif %}
