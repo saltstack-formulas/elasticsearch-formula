@@ -2,7 +2,10 @@
     'default': {
         'pkg': 'elasticsearch',
     },
+    'Ubuntu': {
+        'pkg': 'elasticsearch',
+    },
 },
-merge=salt['pillar.get']('elasticsearch:lookup', {}),
+merge=salt['pillar.get']('elasticsearch', {}),
 default='default')
 %}
