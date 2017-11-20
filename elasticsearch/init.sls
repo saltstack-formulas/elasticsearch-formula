@@ -1,5 +1,4 @@
 include:
-  - elasticsearch.repo
   - elasticsearch.pkg
   - elasticsearch.config
   - elasticsearch.sysconfig
