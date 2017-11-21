@@ -4,6 +4,6 @@
         'use_repo': True,
     },
 },
-merge=salt['pillar.get']('elasticsearch:lookup', {}),
+merge=salt['pillar.get']('elasticsearch', {}),
 default='default')
 %}
