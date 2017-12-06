@@ -1,6 +1,8 @@
 {% from "elasticsearch/settings.sls" import elasticsearch with context %}
 
-{%- if elasticsearch.major_version == 5 %}
+{%- if elasticsearch.major_version == 6 %}
+  {%- set repo_url = 'https://artifacts.elastic.co/packages/6.x' %}
+{%- elif elasticsearch.major_version == 5 %}
   {%- set repo_url = 'https://artifacts.elastic.co/packages/5.x' %}
 {%- else %}
   {%- set repo_url = 'http://packages.elastic.co/elasticsearch/2.x' %}
