@@ -11,10 +11,6 @@ apt-transport-https:
   pkg.installed
 {%- endif %}
 
-debug_repo_name:
-    cmd.run:
-        - name: "echo 'major_version {{ elasticsearch.major_version }} - repo_url: {{ repo_url }}'"
-
 elasticsearch_repo:
   pkgrepo.managed:
     - humanname: Elasticsearch {{ elasticsearch.major_version }}
