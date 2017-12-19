@@ -17,7 +17,7 @@ elasticsearch_repo:
   pkgrepo.managed:
     - humanname: Elasticsearch {{ elasticsearch.major_version }}
 {%- if grains.get('os_family') == 'Debian' %}
-  {%- if elasticsearch.major_version == 5 %}
+  {%- if elasticsearch.major_version >= 5 %}
     - name: deb {{ repo_url }}/apt stable main
   {%- else %}
     - name: deb {{ repo_url }}/debian stable main
