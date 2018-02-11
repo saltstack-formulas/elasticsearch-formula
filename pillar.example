@@ -19,6 +19,7 @@ elasticsearch:
     ES_STARTUP_SLEEP_TIME: 5
     ES_HEAP_SIZE: 8g
     MAX_OPEN_FILES: 65535
+    ES_JAVA_OPTS: -Dlog4j2.disable.jmx=true
   plugins:
     lang-python: lang-python
     kopf: lmenezes/elasticsearch-kopf
