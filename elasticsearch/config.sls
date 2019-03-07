@@ -21,7 +21,7 @@ elasticsearch_cfg:
   file.directory:
     - user: elasticsearch
     - group: elasticsearch
-    - mode: 0700
+    - mode: 0750
     - makedirs: True
     - require_in:
       - service: elasticsearch
