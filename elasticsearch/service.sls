@@ -11,4 +11,4 @@ elasticsearch_service:
       - file: elasticsearch_cfg
 {%- endif %}
     - require:
-      - pkg: elasticsearch
+      - pkg: elasticsearch_pkg
