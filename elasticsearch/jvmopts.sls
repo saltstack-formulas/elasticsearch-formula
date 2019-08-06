@@ -11,7 +11,7 @@ include:
     - mode: 0770
     - user: elasticsearch
     - group: elasticsearch
-    - contents: {{ jvm_opts }}
+    - contents: {{ jvm_opts | yaml }}
     - watch_in:
       - service: elasticsearch
 {% endif -%}
