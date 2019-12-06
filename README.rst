@@ -1,7 +1,7 @@
 Elasticsearch
 =============
 
-Formula to install and configure Elasticsearch. Supports 2.x and 5.x.
+Formula to install and configure Elasticsearch. Supports 2.x and 7.x.
 
 
 .. note::
