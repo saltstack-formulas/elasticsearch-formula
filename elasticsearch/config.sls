@@ -27,3 +27,8 @@ elasticsearch_cfg:
       - service: elasticsearch
 {% endif %}
 {% endfor %}
+
+elasticsearch_keystore_create:
+  cmd.run:
+    - name: cd /etc/elasticsearch && /usr/share/elasticsearch/bin/elasticsearch-keystore create
+    - unless: test -f /etc/elasticsearch/elasticsearch.keystore
