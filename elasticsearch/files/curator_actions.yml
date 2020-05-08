@@ -1,0 +1,7 @@
+{%- from "elasticsearch/map.jinja" import elasticsearch_map with context -%}
+---
+actions:
+  {%- for action in elasticsearch_map.curator.actions %}
+  {{ loop.index }}:
+    {{ action|yaml }}
+  {%- endfor %}

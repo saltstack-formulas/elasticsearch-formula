@@ -17,12 +17,13 @@ provisioner:
         - sun-java
         - sun-java.env
         - elasticsearch
+  pillars:
+    top.sls:
+      base:
+        "*":
+          - elasticsearch
 
 platforms:
-  - name: ubuntu-14.04
-    driver_config:
-      provision_command:
-        - locale-gen en_US.UTF-8
   - name: ubuntu-16.04
     driver_config:
       provision_command:
@@ -30,36 +31,14 @@ platforms:
       run_command: /sbin/init
 
 suites:
-  - name: default
-  - name: with-pillar-set
+  - name: elasticsearch_server 
     provisioner:
-      pillars:
-        top.sls:
-          base:
-            '*':
-              - elasticsearch
-        elasticsearch.sls:
-          elasticsearch:
-            config:
-              network.host: 0.0.0.0
-            plugins:
-              lang-python: lang-python
-  - name: version-5.0
-    excludes:
-      - ubuntu-14.04
+     pillars-from-files:
+        elasticsearch.sls: test/pillar/elasticsearch.sls
+  - name: elasticsearch_server_curator 
     provisioner:
-      pillars:
-        top.sls:
-          base:
-            '*':
-              - elasticsearch
-        elasticsearch.sls:
-          elasticsearch:
-            version: 5.*
-            plugins:
-              lang-python: lang-python
-            jvm_opts:
-              - '# Test String'
+     pillars-from-files:
+        elasticsearch.sls: test/pillar/curator.sls
 
 verifier:
   name: shell
