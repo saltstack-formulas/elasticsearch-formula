@@ -2,6 +2,16 @@ include:
   - elasticsearch.pkg
 
 {%- if salt['pillar.get']('elasticsearch:config') %}
+
+## Ensure directory permissions are set as required.
+## On SUSE with 6.x, this was not always ensured as it seemed.
+elasticsearch_es_path_conf_chmod:
+  file.directory:
+    - name: /etc/elasticsearch
+    - user: root
+    - group: elasticsearch
+    - mode: 2770
+
 elasticsearch_cfg:
   file.serialize:
     - name: /etc/elasticsearch/elasticsearch.yml
