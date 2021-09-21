@@ -3,5 +3,6 @@ include:
   - elasticsearch.config
   - elasticsearch.sysconfig
   - elasticsearch.jvmopts
+  - elasticsearch.jvmoptsd
   - elasticsearch.service
   - elasticsearch.plugins

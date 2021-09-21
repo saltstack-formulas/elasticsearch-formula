@@ -60,6 +60,9 @@ suites:
               lang-python: lang-python
             jvm_opts:
               - '# Test String'
+            jvm_opts_d:
+              memory:
+                - '-Xms1g'
 
 verifier:
   name: shell
