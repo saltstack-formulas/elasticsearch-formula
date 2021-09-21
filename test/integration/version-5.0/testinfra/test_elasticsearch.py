@@ -16,3 +16,6 @@ def test_service_is_running_and_enabled(Service):
 
 def test_jvm_opts(File):
     assert File('/etc/elasticsearch/jvm.options').contains('# Test String')
+
+def test_jvm_opts_d(File):
+    assert File('/etc/elasticsearch/jvm.options.d/memory.options').contains('-Xms1g')
