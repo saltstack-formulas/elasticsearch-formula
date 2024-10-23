@@ -15,15 +15,17 @@ elasticsearch_repo:
   pkgrepo.managed:
     - humanname: Elasticsearch {{ elasticsearch.major_version }}
 {%- if grains.get('os_family') == 'Debian' %}
+    - name: >
+        deb [arch={{ grains['osarch'] }} signed-by=/etc/apt/keyrings/elastic-archive-keyring.gpg]
   {%- if elasticsearch.major_version >= 5 %}
-    - name: deb {{ repo_url }}/apt stable main
+        {{ repo_url }}/apt stable main
   {%- else %}
-    - name: deb {{ repo_url }}/debian stable main
+        {{ repo_url }}/debian stable main
   {%- endif %}
     - dist: stable
-    - file: /etc/apt/sources.list.d/elasticsearch.list
-    - keyid: D88E42B4
-    - keyserver: keyserver.ubuntu.com
+    - file: /etc/apt/sources.list.d/elastic.list
+    - key_url: https://packages.elastic.co/GPG-KEY-elasticsearch
+    - aptkey: false
     - clean_file: true
 {%- elif grains['os_family'] == 'RedHat' %}
     - name: elasticsearch
